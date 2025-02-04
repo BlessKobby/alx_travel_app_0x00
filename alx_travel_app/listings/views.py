@@ -1,22 +1,9 @@
-# listings/views.py
-from rest_framework import viewsets
-from .models import Listing, Booking
-from .serializers import ListingSerializer, BookingSerializer
-
-class ListingViewSet(viewsets.ModelViewSet):
-    queryset = Listing.objects.all()
-    serializer_class = ListingSerializer
-
-class BookingViewSet(viewsets.ModelViewSet):
-    queryset = Booking.objects.all()
-    serializer_class = BookingSerializer
 
 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 import requests
-from .models import Payment, Booking
 import os
 
 class PaymentInitiateView(APIView):
@@ -85,8 +72,6 @@ class PaymentInitiateView(APIView):
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Booking, Payment
-from .serializers import BookingSerializer
 import requests
 import os
 
