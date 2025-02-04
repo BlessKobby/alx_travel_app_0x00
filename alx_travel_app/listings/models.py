@@ -35,5 +35,20 @@ class Review(models.Model):
     comment = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+### Updates to `listings/models.py`
+
+class Payment(models.Model):
+    """Model representing a payment for a booking."""
+    payment_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    booking = models.ForeignKey(Booking, on_delete=models.CASCADE, related_name='payments')
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    transaction_id = models.CharField(max_length=255)
+    status = models.CharField(max_length=50, default='Pending')  # e.g., Pending, Completed, Failed
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Payment {self.payment_id} for Booking {self.booking.booking_id}"
+
     def __str__(self):
         return f"Review {self.review_id} for {self.listing.title}"
